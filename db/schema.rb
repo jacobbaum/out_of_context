@@ -11,37 +11,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150214195525) do
+ActiveRecord::Schema.define(version: 20150217144701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attributions", force: :cascade do |t|
-    t.integer  "story_id"
+    t.integer  "misquotable_id"
     t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "altered_text"
   end
 
-  create_table "quotes", force: :cascade do |t|
-    t.integer  "story_id"
-    t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "stories", force: :cascade do |t|
+  create_table "misquotables", force: :cascade do |t|
     t.integer  "npr_id"
     t.string   "link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "titles", force: :cascade do |t|
-    t.integer  "story_id"
-    t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "pos_tags", force: :cascade do |t|
+    t.string   "tag"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "example"
   end
+
+  create_table "quotes", force: :cascade do |t|
+    t.integer  "misquotable_id"
+    t.text     "text"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "altered_text"
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.integer  "misquotable_id"
+    t.string   "text"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "altered_text"
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string   "text"
+    t.string   "pos_tag_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "token_id"
+    t.string   "token_type"
+    t.boolean  "replace?",    default: false
+    t.string   "replacement"
+    t.boolean  "repeat?",     default: false
+  end
+
+  add_index "words", ["token_type", "token_id"], name: "index_words_on_token_type_and_token_id", using: :btree
 
 end

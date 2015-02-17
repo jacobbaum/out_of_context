@@ -1,3 +1,4 @@
 class Attribution < ActiveRecord::Base
-  belongs_to :story
+  belongs_to :misquotable
+  has_many :words, as: :token
 end
