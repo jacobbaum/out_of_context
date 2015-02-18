@@ -1,32 +1,30 @@
 require 'rails_helper'
 
-describe Word do
+describe Attribution do
 
-  let(:word) { FactoryGirl.create(:word) }
+  let(:attribution) { FactoryGirl.create(:attribution) }
 
-  subject { word }
+  subject { attribution }
 
   it { should respond_to(:text) }
-  it { should respond_to(:replacement) }
-  it { should respond_to(:replace?) }
-  it { should respond_to(:repeat?) }
+  it { should respond_to(:altered_text) }
 
   it { should be_valid }
 
   describe 'validations' do
     describe 'text' do
       context 'not present' do
-        before { word.text = nil }
+        before { attribution.text = nil }
         it { should_not be_valid }
       end
       context 'too long' do
-        before { word.text = "loremerol" * 10 }
+        before { attribution.text = "John Doe, President of Partying" * 10 }
         it { should_not be_valid }
       end
     end
-    describe 'replacement' do
+    describe 'altered_text' do
       context 'too long' do
-        before { word.replacement = "loremerol" * 10 }
+        before { attribution.altered_text = "John Doe, President of Partying" * 10 }
         it { should_not be_valid }
       end
     end

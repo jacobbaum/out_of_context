@@ -1,32 +1,30 @@
 require 'rails_helper'
 
-describe Word do
+describe Title do
 
-  let(:word) { FactoryGirl.create(:word) }
+  let(:title) { FactoryGirl.create(:title) }
 
-  subject { word }
+  subject { title }
 
   it { should respond_to(:text) }
-  it { should respond_to(:replacement) }
-  it { should respond_to(:replace?) }
-  it { should respond_to(:repeat?) }
+  it { should respond_to(:altered_text) }
 
   it { should be_valid }
 
   describe 'validations' do
     describe 'text' do
       context 'not present' do
-        before { word.text = nil }
+        before { title.text = nil }
         it { should_not be_valid }
       end
       context 'too long' do
-        before { word.text = "loremerol" * 10 }
+        before { title.text = "Crazy News is Happening" * 12 }
         it { should_not be_valid }
       end
     end
-    describe 'replacement' do
+    describe 'altered_text' do
       context 'too long' do
-        before { word.replacement = "loremerol" * 10 }
+        before { title.altered_text = "Crazy News is Happening" * 12 }
         it { should_not be_valid }
       end
     end

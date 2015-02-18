@@ -1,20 +1,5 @@
 EngTagger.class_eval do
   
-  # def worry(text, verbose = false)
-  #   return nil unless valid_text(text)
-  #   tagged = []
-  #   words = clean_text(text)
-  #   tags = Array.new
-  #   words.each do |word|
-  #     cleaned_word = clean_word(word)
-  #     tag = assign_tag(@conf[:current_tag], cleaned_word)
-  #     @conf[:current_tag] = tag = (tag and tag != "") ? tag : 'nn'
-  #     tag = EngTagger.explain_tag(tag) if verbose
-  #     words << word
-  #   end
-  #   reset
-  #   return words
-  # end
   def tag_word_hash(text, verbose = false)
     return nil unless valid_text(text)
     tagged = []
