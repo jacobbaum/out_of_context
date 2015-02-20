@@ -1,0 +1,16 @@
+<!-- select topic -->
+<%= form_tag({controller: "misquotables", action: "create"}, class: "bootstrappy") do %>
+  <%= select_tag(:query) do %>
+    <%= options_from_collection_for_select(Topic.all, :name, :code) %>
+  <% end %>
+  <%= hidden_field_tag(:query_type, 'topic') %>
+  <%= submit_tag("Submit") %>
+<% end %>
+
+
+<!-- search -->
+<%= form_tag({controller: "misquotables", action: "create"}, class: "bootstrappy") do %>
+  <%= search_field_tag(:query, "Search all NPR Stories") %>
+  <%= hidden_field_tag(:query_type, 'search') %>
+  <%= submit_tag("Submit") %>
+<% end %>

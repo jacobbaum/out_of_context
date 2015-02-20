@@ -1,0 +1,18 @@
+<h3><%= @misquotable.title.text %></h3>
+
+<%= form_for(@misquotable) do |f| %>
+  <% @misquotable.title.words.reverse_each do |word| %>
+    <% if word.replace? %>
+      <%= '[..............]' %>
+    <% elsif word.text == 'All' %>
+      <%= f.fields_for :title do |t_f| %>
+        <%= t_f.fields_for :word do |t_w_f| %>
+          <%= t_w_f.text_field :text %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %>    
+  <% end %>
+  <%= f.submit 'Submit' %>
+<% end %>

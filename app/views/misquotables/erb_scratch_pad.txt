@@ -1,0 +1,23 @@
+<%= form_for @misquotable, url: {action: 'create'}, html: {class: ""} do |f| %>
+<%= f.select(:topic_id, options_for_select(Topic.all.map { |topic| topic.name }) ) %>
+<% end %>
+
+
+
+<%= form_for @misquotable, url: {action: "create"}, html: {class: "bootstrappy"} do |f| %>
+  <%= f.select_tag(:query) do %>
+    <% Topic.all.collect do |topic| %>
+      <% unless topic.name.include?('User Searches') do %>
+        <%= content_tag(:option, topic.name, value: topic.code) %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= f.hidden_field_tag(:query_type, 'topic') %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+<%= form_for @misquotable, url: {action: "create"}, html: {class: "bootstrappy"} do |f| %>
+  <%= f.search_field_tag(:query, "Search all NPR Stories") %>
+  <%= f.hidden_field_tag(:query_type, 'search') %>
+  <%= f.submit "Submit" %>
+<% end %>

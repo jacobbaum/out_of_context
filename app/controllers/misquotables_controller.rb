@@ -1,38 +1,52 @@
 class MisquotablesController < ApplicationController
+  before_action :set_misquotable, only: [:show, :edit, :update, :destroy]
 
-def index
-end
+  def index
+  end
 
-def show
-  # display finished/saved product
-end
+  def show
+    # display finished/saved product
+  end
 
-def new
-  # doesn't apply to npr quotes. Not Starting with an empty container 
-  # this will get used if/when user ability to create their own misquotables is implemented
-  # or, is this the default view?
-end
+  def new
+    @misquotable = Misquotable.new
+  end
 
-#done when user selects a topic and clicks submit
-def create
-  #get rid of start number as argument/move it into method?
-  NprApi.get_json(params[:topic_code], 1) 
-  @misquote = Misquotable.create_from_npr_api(NprApi.get_quotes_from_json).first
-  #four lines for creating and processing words. move? condense?
-  @misquote.create_words
-  @misquote.quote.flag_words(flag_tags)  
-  @misquote.title.flag_words(flag_tags)
-  @miquote.attribution.flag_words(flag_tags)
-  redirect_to edit  # redirect_to vs render?
-end
+  def create
+      @misquotable = Misquotable.new
+      @misquotable.npr_create(params[:query_type], params[:query])
+    if @misquotable.save 
+      redirect_to edit_misquotable_path(@misquotable.id)
+    else
+      #TODO flash documentation?
+      flash[:failure] = "NPR didn't give us any quotes\
+                      \ that match your criteria. Want to try again?"
+      render 'new'
+    end
+  end
 
-def edit
-  #this will point to the view that the user interacts with
-end
+  def edit
+    @misquotable
+  end
 
-def update
-  #done when user enters words and clicks submit
-end
+  def update
+    @misquotable.update
+  end
 
-def destroy
+  def destroy
+  end
+
+  # def misquotable_params
+  #   params.require(:misquotable).permit(:title, :quote, :attribution, :link)
+  # end
+
+  # def misquotable_params
+  #     params.require(:misquotable).permit(:name, :rating, :price,
+  #                                  :description, :image_file)
+  #   end
+
+  def set_misquotable
+    @misquotable = Misquotable.find(params[:id])
+  end
+
 end
