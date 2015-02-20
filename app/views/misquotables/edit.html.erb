@@ -1,18 +1,54 @@
 <h3><%= @misquotable.title.text %></h3>
 
+
 <%= form_for(@misquotable) do |f| %>
-  <% @misquotable.title.words.reverse_each do |word| %>
+<!-- <div> -->
+  <% @misquotable.title.words.each do |word| %>
     <% if word.replace? %>
-      <%= '[..............]' %>
-    <% elsif word.text == 'All' %>
-      <%= f.fields_for :title do |t_f| %>
-        <%= t_f.fields_for :word do |t_w_f| %>
-          <%= t_w_f.text_field :text %>
+      <%= f.fields_for :title do |t| %>
+        <%= t.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
         <% end %>    
       <% end %>
     <% else %>
       <%= word.text %>
-    <% end %>    
+    <% end %> 
+    <!-- <%= word.pos_tag.tag %>    -->
   <% end %>
+<!-- </div> -->
+<!-- <div> -->
+
+<!-- </div> -->
+<!-- <div> -->
+  <% @misquotable.quote.words.each do |word| %>
+    <% if word.replace? %>
+      <%= f.fields_for :quote do |q| %>
+        <%= q.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %> 
+    <!-- <%= word.pos_tag.tag %>    -->
+  <% end %>
+<!-- </div> -->
+<!-- <div> -->
+  <% @misquotable.attribution.words.each do |word| %>
+    <% if word.replace? %>
+      <%= f.fields_for :attribution do |a| %>
+        <%= a.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %>  
+    <!-- <%= word.pos_tag.tag %>   -->
+  <% end %>
+<!-- </div> -->
   <%= f.submit 'Submit' %>
 <% end %>

@@ -21,3 +21,34 @@
   <%= f.hidden_field_tag(:query_type, 'search') %>
   <%= f.submit "Submit" %>
 <% end %>
+
+
+    <% if word.replace? %>
+      <%= f.text_field(:word, :replacement) %>
+    <% else %>
+
+
+    
+    <% elsif word.text == 'All' %>
+      <%= f.fields_for :title do |t_f| %>
+        <%= t_f.fields_for :word do |t_w_f| %>
+          <%= t_w_f.text_field :text %>
+        <% end %>    
+      <% end %>
+
+<% @misquotable.title.words.reverse_each do |word| %>
+    <% if word.replace? %>
+      <%= '[..............]' %>
+    <% elsif word.text == 'All' %>
+      <%= f.fields_for :title do |t_f| %>
+        <%= t_f.fields_for :word do |t_w_f| %>
+          <%= t_w_f.text_field :text %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %>    
+
+      <% @misquotable.quote.words.each do |word| %>
+    <%= "#{word.text} | #{word.pos_tag.tag.downcase}" %>
+  <% end %>  

@@ -50,3 +50,37 @@ class MisquotablesController < ApplicationController
   end
 
 end
+
+# {"utf8"=>"✓",
+#  "_method"=>"patch",
+#  "authenticity_token"=>"Rizh0iAUYvmovz6OSOmpI6x0cf9bhozXo0NtV26fxkAuQsTrVlBnnJ7qSY8nWn/uOnOZeZpsQiI9Uve8XDShSQ==",
+#  "misquotable"=>{"title_attributes"=>{"word"=>{"replacement"=>"drinks",
+#  "id"=>""},
+#  "id"=>"40"},
+#  "quote_attributes"=>{"word"=>{"replacement"=>"pizza",
+#  "id"=>""},
+#  "id"=>"39"}},
+#  "commit"=>"Submit",
+#  "id"=>"34"}
+
+
+
+# {"utf8"=>"✓",
+#  "_method"=>"patch",
+#  "authenticity_token"=>"wAN900JogMoGBjNcytvSQP5Y5t/C7P/ULvM7iIp5RtaobVjqNCyFrzBTRF2laASNaF8OWQMGMSGw4qFjuNIh3w==",
+#  "misquotable"=>
+      # {"title_attributes"=>
+      #   {"word"=>
+      #     {"replacement"=>"runs"}, 
+      #   "id"=>"40"},
+      #   "quote_attributes"=>
+      #     {"word"=>
+      #       {"replacement"=>"banana"},
+      #     "id"=>"39"}
+      #   },
+      # "commit"=>"Submit",
+      # "id"=>"34"}
+
+      # quote nested under title?
+
+
