@@ -9,16 +9,16 @@ class Misquotable < ActiveRecord::Base
   #TODO rewrite below with active record create methods
   def make_sections(filtered_json)
     filtered_json.each do |story|
-      update(npr_id: story['id'], link: story['link'][0]['$text'], 
-             sections: Section.create(text: story['title']['$text'], 
-                                      type: 'title'),
-                       Section.create(text: story['pullQuote'][0]['text']['$text'], 
-                                      type: 'quote'), 
-                       Section.create(text: story['pullQuote'][0]['person']['$text'], 
-                                      type: 'attribution'))
+      update(npr_id: story['id'], link: story['link'][1]['$text']) 
+      sections.create(text: story['title']['$text'], 
+                      name: 'title')
+      sections.create(text: story['pullQuote'][0]['text']['$text'], 
+                      name: 'quote') 
+      sections.create(text: story['pullQuote'][0]['person']['$text'], 
+                      name: 'attribution')
     end
   end
-
+end
 #   def make_words
 #     tagger = EngTagger.new
 #     [title, quote, attribution].each do |section|
