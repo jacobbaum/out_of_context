@@ -1,10 +1,5 @@
 class Quote < ActiveRecord::Base
-  belongs_to :misquotable
-  has_many :words, as: :token
 
-  accepts_nested_attributes_for :words
-
-  validates :text, presence: true
 
   def flag_tags
     patterns =  { 'vb cc vb'  => 'mlvb cc mlvb',

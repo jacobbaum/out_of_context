@@ -1,11 +1,11 @@
 class Title < ActiveRecord::Base
-  belongs_to :misquotable
-  has_many :words, as: :token
+  # belongs_to :misquotable
+  # has_many :words, as: :token
 
-  accepts_nested_attributes_for :words
+  # accepts_nested_attributes_for :words
 
-  validates :text, presence: true, length: { maximum: 254 }
-  validates :altered_text, length: { maximum: 254 }
+  # validates :text, presence: true, length: { maximum: 254 }
+  # validates :altered_text, length: { maximum: 254 }
 
   def flag_tags
     patterns =  { 'vb'  => 'mlnvb',

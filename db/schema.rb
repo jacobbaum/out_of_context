@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217214316) do
+ActiveRecord::Schema.define(version: 20150220235747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attributions", force: :cascade do |t|
-    t.integer  "misquotable_id"
-    t.string   "text"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "altered_text"
-  end
 
   create_table "misquotables", force: :cascade do |t|
     t.integer  "npr_id"
@@ -40,20 +32,13 @@ ActiveRecord::Schema.define(version: 20150217214316) do
     t.string   "example"
   end
 
-  create_table "quotes", force: :cascade do |t|
+  create_table "sections", force: :cascade do |t|
     t.integer  "misquotable_id"
+    t.string   "type"
     t.text     "text"
+    t.text     "altered_text"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "altered_text"
-  end
-
-  create_table "titles", force: :cascade do |t|
-    t.integer  "misquotable_id"
-    t.string   "text"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "altered_text"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -68,13 +53,10 @@ ActiveRecord::Schema.define(version: 20150217214316) do
     t.string   "pos_tag_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "token_id"
-    t.string   "token_type"
     t.boolean  "replace?",    default: false
     t.string   "replacement"
     t.boolean  "repeat?",     default: false
+    t.integer  "section_id"
   end
-
-  add_index "words", ["token_type", "token_id"], name: "index_words_on_token_type_and_token_id", using: :btree
 
 end

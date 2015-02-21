@@ -1,5 +1,5 @@
 class Word < ActiveRecord::Base
-  belongs_to :token, polymorphic: true
+  belongs_to :section
   belongs_to :pos_tag
 
   # The longest word in the English language has 45 letters
