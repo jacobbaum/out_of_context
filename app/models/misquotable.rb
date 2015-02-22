@@ -3,98 +3,57 @@ class Misquotable < ActiveRecord::Base
 
   has_many :sections
   has_many :words, through: :sections
+
+  accepts_nested_attributes_for :sections
+  # accepts_nested_attributes_for :words
  
   belongs_to :topic
+  #TODO if _json.count> 1, create from extras, prompt user
 
-  #TODO rewrite below with active record create methods
+  def to_key
+    [id]
+  end
+
   def make_sections(filtered_json)
-    filtered_json.each do |story|
-      update(npr_id: story['id'], link: story['link'][1]['$text']) 
+    story = filtered_json.first
+      update(npr_id: story['id'], link: story['link'][0]['$text']) 
       sections.create(text: story['title']['$text'], 
                       name: 'title')
       sections.create(text: story['pullQuote'][0]['text']['$text'], 
                       name: 'quote') 
       sections.create(text: story['pullQuote'][0]['person']['$text'], 
                       name: 'attribution')
+  end
+
+  def make_words
+    tagger = EngTagger.new
+    sections.each do |section|
+      tagger.tag_word_hash(section.text).each do |t_w_hash|
+        t_w_hash.each do |tag, word|
+          section.words.create(text: word, pos_tag: PosTag.find_by_tag(tag.upcase))
+        end
+      end
     end
   end
-end
-#   def make_words
-#     tagger = EngTagger.new
-#     [title, quote, attribution].each do |section|
-#       tagger.tag_word_hash(section.text).each do |t_w_hash|
-#         t_w_hash.each do |tag, word|
-#           section.words.create(text: word, pos_tag: PosTag.find_by_tag(tag.upcase))
-#         end
-#       end
-#     end
-#   end
+
+  def make_substitutions
+    sections.each do |section|
+      section.find_subs.flag_subs
+    end
+  end
 
 # # "query"=>"slowness", "query_type"=>"search", 
 
-#   def npr_create (query_type, query)
-#     make_sections(NprApi.url(query_type, query).json.filter_json)
-#     make_words
-#     title_flag_words(title_flag_tags)
-#     quote_flag_words(quote_flag_tags)
-#     attribution_flag_words(attribution_flag_tags)
-#   end
+  def npr_create (query_type, query)
+    make_sections(NprApi.url(query_type, query).json.filter_json)
+    make_words
+    make_substitutions
+  end
 
-# # for individual sections
-#   def tags_to_s
-#     tagger = EngTagger.new
-#     tagger.tag_string(text)
-#   end
-
-#   #title words 
-#   def title_flag_tags
-#     patterns =  { 'vb'  => 'mlnvb',
-#                   'vbd' => 'mlvbd',
-#                   'vbg' => 'mlvbg',
-#                   'vbg' => 'mlvbg' }
-#     tag_string = title.tags_to_s
-#     patterns.each do |pattern, replacement|
-#       tag_string.gsub!(pattern, replacement)
-#     end
-#     tag_string.split(' ')
-#   end
-
-#   def title_flag_words(flagged_tags)
-#     word_indexes = flagged_tags.each_index.select do |i| 
-#       flagged_tags[i].include?('ml') 
-#     end
-#     word_array = title.words.reverse
-#     word_indexes.each do |i_num|
-#       word_array[i_num].update(replace?: true)
-#     end 
-#     # return word_array 
-#   end
-
-#   #quote words 
-#   def quote_flag_tags
-#     patterns =  { 'vb cc vb'  => 'mlvb cc mlvb',
-#                   'nn nn'     => 'mlnn nn'     ,
-#                   'prps nn'   => 'prps mlnn'   ,
-#                   'jjs nn'    => 'jjs mlnn'    ,
-#                   'jj jj nn'  => 'jj jj mlnn'  ,
-#                   'in det nn' => 'in det mlnn'  }
-#     tag_string = quote.tags_to_s
-#     patterns.each do |pattern, replacement|
-#       tag_string.gsub!(pattern, replacement)
-#     end
-#     tag_string.split(' ')
-#   end
-
-#   def quote_flag_words(flagged_tags)
-#     word_indexes = flagged_tags.each_index.select do |i| 
-#       flagged_tags[i].include?('ml') 
-#     end
-#     word_array = quote.words.reverse
-#     word_indexes.each do |i_num|
-#       word_array[i_num].update(replace?: true)
-#     end 
-#     # return word_array 
-#   end
+  # def tags_to_s
+  #   tagger = EngTagger.new
+  #   tagger.tag_string(text)
+  # end
 
 #   #attribution words
 #   def attribution_flag_tags
@@ -125,14 +84,5 @@ end
 #   end
 # end
 
-  # sections are 'title', 'quote' and 'attribution'
-  # def self.create_words_with_tags(instance, section)
-  #   tagger = EngTagger.new
-  #   tagger.tag_word_hash(instance.section.text).each do |t_w_hash|
-  #     t_w_hash.each do |tag, word|
-  #       instance.section.words.create(text: word, pos_tag: PosTag.find_by_tag(tag.upcase))
-  #     end
-  #   end
-  # end
-
+end
 

@@ -2,7 +2,36 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  resources :misquotables
+  resources :misquotables do
+    resources :words do
+      collection do
+        get 'replacements'
+        put 'replace'
+      end
+    end
+    resources :sections do
+      collection do
+        get 'replacements'
+        put 'replace'
+      end
+    end
+  end
+
+  put 'misquotables/:id/alteration' => 'misquotables#alteration'
+  
+# resources :sections, only: [:edit, :update]
+# map.resources :products, :collection => { :edit_individual => :post, :update_individual => :put }
+
+
+#   resources :words, :collection => { :edit, :update }
+
+
+# resources :photos do
+#   collection do
+#     get 'search'
+#   end
+# end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,6 +1,5 @@
 class Quote < ActiveRecord::Base
 
-
   def flag_tags
     patterns =  { 'vb cc vb'  => 'mlvb cc mlvb',
                   'nn nn'     => 'mlnn nn'     ,

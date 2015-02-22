@@ -1,11 +1,11 @@
 class MisquotablesController < ApplicationController
-  before_action :set_misquotable, only: [:show, :edit, :update, :destroy]
+  before_action :set_misquotable, only: [ :show, :edit, :update, :destroy]
 
   def index
   end
 
   def show
-    # display finished/saved product
+    @misquotable
   end
 
   def new
@@ -13,10 +13,10 @@ class MisquotablesController < ApplicationController
   end
 
   def create
-      @misquotable = Misquotable.new
-      @misquotable.npr_create(params[:query_type], params[:query])
+    @misquotable = Misquotable.new
+    @misquotable.npr_create(params[:query_type], params[:query])
     if @misquotable.save 
-      redirect_to edit_misquotable_path(@misquotable.id)
+      redirect_to edit_misquotable_path(@misquotable.id)                # replacements_misquotable_words_path(@misquotable.id)          
     else
       #TODO flash documentation?
       flash[:failure] = "NPR didn't give us any quotes\
@@ -29,12 +29,26 @@ class MisquotablesController < ApplicationController
     @misquotable
   end
 
+  def alteration
+    @misquotable = Misquotable.find(params[:mq_id])
+    word_ids = params.delete_if {|k, v| k =~ /\A\D/ } 
+    word_ids.each do |k,v|
+      @misquotable.words.find(k.to_i).update(replacement: v)
+    end
+    redirect_to misquotable_path(@misquotable)
+  end
+
   def update
     @misquotable.update
   end
 
   def destroy
   end
+
+  # def replace_word_params
+  #   params=(:section_ids)
+  # end
+
 
   # def misquotable_params
   #   params.require(:misquotable).permit(:title, :quote, :attribution, :link)
@@ -83,4 +97,32 @@ end
 
       # quote nested under title?
 
+# word_ids = params.delete_if {|k, v| k =~ /\A\D/ } 
+# word_ids.each do |k,v|
+#   @misquotable.words.find(k.to_i).update(replacement: v)
+# end
+
+#   mql.words.find(1619).update(replacement: "good)
+# end
+
+
+# @misquotable.words.find
+
+
+
+
+# if k == word.id
+
+# word.replacement = v
+
+
+# {"utf8"=>"✓",
+#  "_method"=>"put",
+#  "authenticity_token"=>"0BW//G6K6naM71YIjc7l80i2ZBQWPszVMXuUr1yYGNC4e5rFGM7vE7q6IQnifTM+3rGMktfUAiCvag5EbjN/2Q==",
+#  "1570"=>"jumps",
+#  "1581"=>"guns",
+#  "1608"=>"chicanos",
+#  "1619"=>"poorly",
+#  "commit"=>"Submit",
+#  "id"=>":id"}
 

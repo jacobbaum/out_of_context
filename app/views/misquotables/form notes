@@ -1,0 +1,69 @@
+
+
+  <% @misquotable.sections.each do |section| %>
+    <% case name %>
+    <% when 'title' %>
+      <% words.each do |word| %>
+        <% if word.replace? %>
+          <% f.fields_for :word do |w| %>
+
+    <% if word.replace? %>
+      <%= f.fields_for :title do |t| %>
+        <%= t.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %> 
+    <!-- <%= word.pos_tag.tag %>    -->
+  <% end %>
+<!-- </div> -->
+<!-- <div> -->
+
+<!-- </div> -->
+<!-- <div> -->
+  <% @misquotable.quote.words.each do |word| %>
+    <% if word.replace? %>
+      <%= f.fields_for :quote do |q| %>
+        <%= q.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %> 
+    <!-- <%= word.pos_tag.tag %>    -->
+  <% end %>
+<!-- </div> -->
+<!-- <div> -->
+  <% @misquotable.attribution.words.each do |word| %>
+    <% if word.replace? %>
+      <%= f.fields_for :attribution do |a| %>
+        <%= a.fields_for :word do |w| %>
+          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
+          <%= w.hidden_field :id %>
+        <% end %>    
+      <% end %>
+    <% else %>
+      <%= word.text %>
+    <% end %>  
+    <!-- <%= word.pos_tag.tag %>   -->
+  <% end %>
+<!-- </div> -->
+  <%= f.submit 'Submit' %>
+<% end %>
+
+
+
+
+
+
+
+@misquotable.npr_create(params['search'], params[:despair])
+
+
+
+NprApi.url('search', 'despair').json.filter_json
