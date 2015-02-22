@@ -10,9 +10,6 @@ class Misquotable < ActiveRecord::Base
   belongs_to :topic
   #TODO if _json.count> 1, create from extras, prompt user
 
-  def to_key
-    [id]
-  end
 
   def make_sections(filtered_json)
     story = filtered_json.first
@@ -42,13 +39,30 @@ class Misquotable < ActiveRecord::Base
     end
   end
 
+  def make_altered_text
+    sections.each do |section|
+      section.altered_text = ""
+      section.words.order(:id).each do |word|
+        if word.replace?
+          section.altered_text << word.replacement + ' '
+        else
+          section.altered_text << word.text + ' '
+        end
+      end
+      section.altered_text.titleize if section.name == 'title'
+    end
+    return self
+  end
+
 # # "query"=>"slowness", "query_type"=>"search", 
 
-  def npr_create (query_type, query)
+  def npr_create(query_type, query)
+    query = topic.code if query_type = 'topic'
     make_sections(NprApi.url(query_type, query).json.filter_json)
     make_words
     make_substitutions
   end
+
 
   # def tags_to_s
   #   tagger = EngTagger.new

@@ -1,169 +1,26 @@
 <h3><%= @misquotable.id %></h3>
 
-<%= form_for(@misquotable) do |f| %>
-  <%= f.fields_for :words do |w| %>
-    <% @misquotable.sections.each do |section| %>
-      <div>
-        <% section.words.order(:id).each do |word| %>
-          <% if word.replace? %>
-            <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
-            <%= w.hidden_field :id %>
-          <% else %>
-            <%= word.text %>
-          <% end %> 
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>  
-  <%= f.submit 'Submit' %>
-<% end %>
-
-<br>
-<%= form_for(@misquotable) do |f| %>
-  <%= f.fields_for(:words) do |w| %>
-  <% @misquotable.words.order(:id).each do |word| %>
-    <% if word.replace? %>
-      <%= f.text_field :word_replacement, value: "#{word.pos_tag.description}" %>
-      <%= f.hidden_field :id %>
-    <% else %>
-      <%= word.text %>
-    <% end %> 
-  <% end %>
-  <% end %>
-  <%= f.submit 'Submit' %>
-<% end %>
-
-<br>
-
-<br>
-<%= form_for(@misquotable) do |f| %>
+<%= form_tag('/misquotables/:id/alteration', method: :put, class: "edit") do %>
   <% @misquotable.sections.each do |section| %>
-    <div>
-      <% section.words.order(:id).each do |word| %>
+    <div class="<%= section.name %>">
+      <p>
+      <% section.words.order(:id).each do | word | %>
         <% if word.replace? %>
-          <%= f.fields_for :section do |s| %>
-          <%= s.fields_for :word do |w| %>
-          <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
-          <%= w.hidden_field :id %>
-          <% end %>
-          <% end %>
-        <% else %>
-          <%= word.text %>+<%= word.pos_tag.tag.downcase %>
+          <span class="word">
+            <%= text_field_tag word.id, word.replacement, placeholder: word.pos_tag.example %>
+            <%= label_tag word.id, word.pos_tag.description.downcase %> 
+          </span>                  
+          <% else %>
+            <% hide = "wdiatl".chars %>
+            <% many = word.text.length %>
+            <% what = "" %>
+            <% many.times { |i| what << hide.sample } %>
+            <%= what %>
+          <% end %> 
         <% end %> 
-      <% end %>
-    </div>
-  <% end %>  
-  <%= f.submit 'Submit' %>
-<% end %>
-
-<br>
-<%= form_for(@misquotable) do |f| %>
-  <% @misquotable.sections.each do |section| %>
-    <div>
-      <% section.words.order(:id).each do |word| %>
-        <% if word.replace? %>
-          <%= f.text_field :word_replacement, value: "#{word.pos_tag.description}" %>
-          <%= f.hidden_field :id %>
-        <% else %>
-          <%= word.text %>+<%= word.pos_tag.tag.downcase %>
-        <% end %> 
-      <% end %>
-    </div>
-  <% end %>  
-  <%= f.submit 'Submit' %>
-<% end %>
-
-
-<br>
-
-<%= form_for(@misquotable) do |f| %>
-  <% @misquotable.sections.each do |section| %>
-    <%= f.fields_for :section do |s| %>
-      <%= s.fields_for :word do |w| %>
-        <% @misquotable.sections.each do |section| %>
-        <% section.words.order(:id).each do |word| %>
-          <% if word.replace? %>
-            <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
-            <%= w.hidden_field :id %>
-          <% else %>
-            <%= word.text %>
-          <% end %> 
-        <% end %>
-        <% end %>    
-      <% end %>
-    <% end %>
-  <% end %>    
-  <%= f.submit 'Submit' %>
-<% end %>
-
-
-
-<br>
-<%= form_tag({controller: "misquotables", action: "update"}, class: "bootstrappy") do %>
-  <% @misquotable.sections.each do |section| %>
-    <% section.words.order(:id).each do |word| %>
-      <% if word.replace? %>
-        <%= form_for :word do |f| %>
-        <%= f.text_field :replacement, value: "#{word.pos_tag.description}" %>
-        <%= f.hidden_field :id %> 
-          <%= f.submit 'Submit' %>
-        <% end %>
-        
-        
-      <% else %>
-     
-        <%= word.text %>
-      <% end %> 
-    <% end %>    
-  <% end %>
-  <%= submit_tag("submit") %>
-<% end %>
-
-<br>
-----------------------
-<br>
-
-<%= form_for(@misquotable) do |f| %>
-
-    <%= f.fields_for :section do |s| %>
-  <% @misquotable.sections.each do |section| %>
-  <%= s.hidden_field :id %>
-
-        <%= form_for :words do |w| %>
-      <% section.words.order(:id).each do |word| %>
-          <% if word.replace? %>
-            <%= w.text_field :replacement, value: "#{word.pos_tag.description}" %>
-            <%= w.hidden_field :id %>
-          <% else %>
-            <%= word.text %>
-          <% end %> 
-        <% end %>
-          
-      <% end %>
-<%= f.submit 'Submit' %>
-
-
-    <% end %>
-  <% end %>  
-  <%= f.submit 'Submit' %>
-<% end %>
-<br>
-
-<%= form_tag('/misquotables/:id/alteration', method: :put) do %>
-       <% @misquotable.sections.each do |section| %>
-
-      <div>
-        <% section.words.order(:id).each do | word | %>
-        <% if word.replace? %>
-            <%= text_field_tag word.id, word.replacement, 
-                placeholder: word.pos_tag.example %>
-            <%= label_tag word.id, word.pos_tag.description %>                   
-          <% else %>
-            <%= word.text %>
-              <% end %> 
-              <% end %> 
+      </p>
      </div> 
-<% end %>
+  <% end %>
   <%= hidden_field_tag 'mq_id', @misquotable.id %>
   <%= submit_tag 'Submit' %>
 <% end %>

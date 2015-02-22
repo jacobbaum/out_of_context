@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
+  resources :users,     except: [:new]
+  resources :sessions,  only:   [:create]
+
   resources :misquotables do
     resources :words do
       collection do
@@ -17,6 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/signup',    to: 'users#new'
+  get '/signin',    to: 'sessions#new'
+  delete '/signout',   to: 'sessions#destroy'
   put 'misquotables/:id/alteration' => 'misquotables#alteration'
   
 # resources :sections, only: [:edit, :update]

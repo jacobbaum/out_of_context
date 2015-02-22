@@ -1,3 +1,8 @@
+<%= @misquotable.topic_id %>
 <% @misquotable.words.each do |word| %>
   <%= word.replacement %>
+<% end %>
+
+<% @misquotable.sections.each do |section| %>
+  <%= section.altered_text %>
   <% end %>

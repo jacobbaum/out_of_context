@@ -1,0 +1,219 @@
+.edit p {
+  font-size: 20px;
+  line-height: 1.25em;
+}
+
+.edit .title p {
+  font-weight: bold;
+}
+
+.edit .title .word {
+  display: inline-table;
+}
+
+.edit .title .word input {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  border-style: none;
+  border-bottom: 2px black solid;
+}
+
+.edit .title .word label {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  font-weight: normal;
+  font-style: italic;
+  color: gray;
+  padding-bottom: 0px;
+  font-size: .75em;
+  margin-bottom: 0px;
+}
+
+.edit .quote {
+  margin-left: 60px;
+
+}
+
+.edit .quote .word {
+  display: inline-table;
+}
+
+.edit .quote .word input {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  border-style: none;
+  border-bottom: 2px black solid;
+}
+
+.edit .quote .word label {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  font-weight: normal;
+  font-style: italic;
+  color: gray;
+  padding-bottom: 0px;
+  font-size: .75em;
+  margin-bottom: 0px;
+}
+
+.edit .attribution .word {
+  display: inline-table;
+}
+
+.edit .attribution .word input {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  border-style: none;
+  border-bottom: 2px black solid;
+}
+
+.edit .attribution .word label {
+  display: block;
+  width: 100%;
+  min-width: 150px;
+  font-weight: normal;
+  font-style: italic;
+  color: gray;
+  padding-bottom: 0px;
+  font-size: .75em;
+  margin-bottom: 0px;
+}
+
+
+
+/*@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,400);
+
+
+Colors for future use:
+#EECE8B yellow
+#FEE09F light yellow
+#D87550 red 
+#B74834 rich red
+
+
+body {
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  }
+
+a {
+  color: #666666;
+}
+
+.container {
+  background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  opacity: .9;
+}
+.home {
+  text-align: center;
+  margin-top:40px;
+}
+
+.home h1 {
+  font-size: 100px;
+  font-weight:bold;
+}
+
+.home h1 a {
+color: #FEF2D8;
+}
+
+.home h1 a:hover {
+  text-decoration: none;
+  color: #EECE8B;
+}
+
+.home p {
+  color: #FEF2D8;
+  font-size: 24px;
+}
+
+.border-bottom {
+  border-bottom: 1px solid;
+  margin-bottom: 18px;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Anonymous Pro', monospace;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.site-title {
+  font-size: 22px;
+  font-style: italic;
+  margin-left:20px;
+}
+
+h2 {
+  font-size: 1.3em;
+  line-height: 1.3em;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+h3 {
+  font-size: 1em; 
+  line-height: 1.4em;
+  font-style: italic;
+  margin-top: 0;
+}
+
+ul {
+  font-size: 1em;
+  list-style: none;
+  padding: 0;
+  line-height: 1.4em;
+}
+
+.navbar {
+  min-height: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.navbar ul {
+  font-size: 1em;
+  width: 100%;
+
+}
+
+.navbar ul li {
+  padding: 10px;
+  line-height: 1.4em;
+}
+.navbar ul li a {
+  padding: 0;
+  line-height: 1.4em;
+}
+
+.navbar-default .navbar-nav>.active>a {
+  background-color: transparent;
+  border-bottom: 1px solid;
+}
+
+.container {
+  border: 1px solid;
+  border-radius: 4px;
+  padding-bottom: 10px;
+  margin-top:20px;
+}
+
+
+*/

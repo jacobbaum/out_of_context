@@ -13,7 +13,7 @@ class MisquotablesController < ApplicationController
   end
 
   def create
-    @misquotable = Misquotable.new
+    @misquotable = Misquotable.create(misquotable_params)
     @misquotable.npr_create(params[:query_type], params[:query])
     if @misquotable.save 
       redirect_to edit_misquotable_path(@misquotable.id)                # replacements_misquotable_words_path(@misquotable.id)          
@@ -35,6 +35,8 @@ class MisquotablesController < ApplicationController
     word_ids.each do |k,v|
       @misquotable.words.find(k.to_i).update(replacement: v)
     end
+    @misquotable.make_altered_text.save
+
     redirect_to misquotable_path(@misquotable)
   end
 
@@ -45,10 +47,13 @@ class MisquotablesController < ApplicationController
   def destroy
   end
 
+  def misquotable_params
+    params.require(:misquotable).permit(:topic_id)
+  end
+
   # def replace_word_params
   #   params=(:section_ids)
   # end
-
 
   # def misquotable_params
   #   params.require(:misquotable).permit(:title, :quote, :attribution, :link)
