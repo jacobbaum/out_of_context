@@ -35,6 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'bcrypt-ruby'
 gem 'httparty'
 gem 'engtagger'
+gem 'rails_12factor', group: :production
 
 group :test do
   gem 'selenium-webdriver', '2.35.1'
