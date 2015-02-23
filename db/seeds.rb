@@ -9,19 +9,19 @@
 #   t.string   "tag"
 #   t.string   "description"
 
-# topics = Topic.create([
-# { name: 'Top Stories',      code: 1002 },
-# { name: 'Animals',          code: 1132 },
-# { name: 'Books',            code: 1032 },
-# { name: 'Business',         code: 1006 },
-# { name: "'Digital Life'",   code: 1049 },
-# { name: 'Food',             code: 1053 },
-# { name: 'Music',            code: 1039 },
-# { name: 'Politics',         code: 1014 },
-# { name: 'Science',          code: 1007 },
-# { name: 'Sports',           code: 1055 },
-# { name: 'User Search',      code: 4321 }
-# ])
+topics = Topic.create([
+{ name: 'Top Stories',      code: 1002 },
+{ name: 'Animals',          code: 1132 },
+{ name: 'Books',            code: 1032 },
+{ name: 'Business',         code: 1006 },
+{ name: "'Digital Life'",   code: 1049 },
+{ name: 'Food',             code: 1053 },
+{ name: 'Music',            code: 1039 },
+{ name: 'Politics',         code: 1014 },
+{ name: 'Science',          code: 1007 },
+{ name: 'Sports',           code: 1055 },
+{ name: 'User Search',      code: 4321 }
+]),
 
 
 pos_tags = PosTag.create([

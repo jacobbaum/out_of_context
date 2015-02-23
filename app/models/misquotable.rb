@@ -55,7 +55,7 @@ class Misquotable < ActiveRecord::Base
   end
 
   def npr_create(query_type, query)
-    query = topic.code if query_type = 'topic'
+    query = topic.code if query_type == 'topic'
     make_sections(NprApi.url(query_type, query).json.filter_json)
     make_words
     make_substitutions
