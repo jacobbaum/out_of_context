@@ -1,46 +1,30 @@
-<h3><%= @misquotable.id %></h3>
-
-<%= form_tag(misquotable_path, method: 'patch', class: "edit") do %>
-  <% @misquotable.sections.each do |section| %>
-    <div class="<%= section.name %>">
-      <p>
-      <% section.words.order(:id).each do | word | %>
-        <% if word.replace? %>
-          <span class="word">
-            <%= text_field_tag word.id, word.replacement, placeholder: word.pos_tag.example %>
-            <%= label_tag word.id, word.pos_tag.description.downcase %> 
-          </span>                  
-          <% else %>
-            <%= word.text %>
-            <% hide = "wdiatl".chars %>
-            <% many = word.text.length %>
-            <% what = "" %>
-            <% many.times { |i| what << hide.sample } %>
-            <%= what %>
-          <% end %> 
-        <% end %> 
-      </p>
-     </div> 
-  <% end %>
-  <%= hidden_field_tag 'mq_id', @misquotable.id %>
-  <%= submit_tag 'Submit' %>
-<% end %>
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="row"> 
+  <div class="quotation">
+    <%= form_tag(misquotable_path, method: 'patch', class: "edit") do %>
+      <% @misquotable.sections.each do |section| %>
+        <div class="<%= section.name %>">
+          <p>
+          <% section.words.order(:id).each do | word | %>
+            <% if word.replace? %>
+              <span class="word">
+                <%= text_field_tag word.id, word.replacement, placeholder: word.pos_tag.example %>
+                <%= label_tag word.id, word.pos_tag.description.downcase %> 
+              </span>                  
+              <% else %>
+                <% hide = "wd#$ia%tl".chars %>
+                <% many = word.text.length %>
+                <% what = "" %>
+                <% many.times { |i| what << hide.sample } %>
+                <%= what.capitalize %>
+              <% end %> 
+            <% end %> 
+          </p>
+         </div> 
+      <% end %>
+      <%= hidden_field_tag 'mq_id', @misquotable.id %>
+      <%= submit_tag 'Submit' %>
+    <% end %>
+  </div>
+  <div class="under-quote">
+  </div>
+</div>

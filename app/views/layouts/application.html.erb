@@ -8,11 +8,18 @@
 </head>
 <body>
   <%= debug(params) if Rails.env.development? %>
-    <div class="container">
-      <h2>Out of Context</h2>
+  <div class="container">
+  <%= render 'layouts/header' %>
+  
 
-<%= yield %>
 
-    </div>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key} no-margin") %>
+  <% end %>
+
+  <%= yield %>
+
+</div>
+
 </body>
 </html>

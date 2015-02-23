@@ -12,10 +12,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       sign_in @user
-      flash[:success] = "Bienvenido!!"
-      # redirect_to user_path(@user.id)
-      # This is the same thing as:
-      redirect_to user_path @user # more likely to see this in professional world
+      flash[:success] = "Welcome!"
+      redirect_to user_path @user
     else
       render 'new'
     end
@@ -46,7 +44,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = "User terminated."
+    flash[:success] = "Account deleted."
     redirect_to root_path
   end
   
@@ -57,9 +55,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      # If my user.id == 1, I try to go to users/2/edit
-      @user = User.find(params[:id]) # @user == User.find(2) == Marc's profile
-      # Redirect back to /users/1 unless 1 == 2
+      @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
 

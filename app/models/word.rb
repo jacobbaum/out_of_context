@@ -5,10 +5,5 @@ class Word < ActiveRecord::Base
   # The longest word in the English language has 45 letters
   validates :text, presence: true, length: { maximum: 50 }
   validates :replacement, length: { maximum: 50 }
-
-
-  def to_key
-    [id]
-  end
-
+  
 end

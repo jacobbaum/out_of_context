@@ -1,0 +1,42 @@
+<div class="row">
+
+  <!-- Main component for a primary marketing message or call to action -->
+  <!-- <div class="jumbotron"> -->
+    <!-- <h2>Out of Context</h2> -->
+  <!--   <h4>Like Mad Libs with NPR</h4> -->
+<!--   </div> -->
+
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#navbar"
+                aria-expanded="false"
+                aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+      <h2>Out of Context</h2>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Get a Quote", new_misquotable_path %></li>
+          <% if signed_in? %>
+            <li><%= link_to "My Profile", user_path(current_user) %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Sign Out", signout_path, method: 'delete' %></li>
+          <% else %>
+            <li><%= link_to "Sign Up", signup_path %></li>
+            <li><%= link_to "Sign In", signin_path %></li>
+          <% end %>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+
+</div>

@@ -30,7 +30,6 @@ module SessionsHelper
   end
 
   def redirect_if_signed_in
-    # redirect_to(user_path(current_user)) if signed_in?
     redirect_to(root_path) if signed_in?
   end
 
@@ -45,14 +44,9 @@ module SessionsHelper
 
   def signed_in_user
     unless signed_in?
-      # store_location
       flash[:warning] = "Please sign in."
       redirect_to signin_url
     end
-  end
-
-  def admin_user
-    redirect_to(root_path) unless current_user.admin?
   end
 
 end

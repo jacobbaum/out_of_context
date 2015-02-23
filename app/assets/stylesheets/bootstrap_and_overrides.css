@@ -1,9 +1,78 @@
+@import url(http://fonts.googleapis.com/css?family=Cutive+Mono|Libre+Baskerville|EB+Garamond|Roboto);
+/*font-family: 'EB Garamond', serif;*/
+/*font-family: 'Libre Baskerville', serif;
+font-family: 'Cutive Mono', monospace;*/
+/*font-family: 'Roboto', sans-serif;*/
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+/*.container {
+  padding: 0px;
+}*/
+.jumbotron {
+  margin-bottom: 0px;
+  padding: 10px 60px;
+}
+
+.navbar {
+  margin-bottom: 0px
+}
+
+.navbar h2 {
+  display: inline-block;
+  height: 50px;
+  margin: 0px;
+  padding-top: 3px;
+  line-height: normal;
+}
+
+.navbar-default {
+  background: white;
+  border: none;
+}
+
+.navbar-nav li a {
+  padding-bottom: 5px;
+  padding-top: 15px;
+}
+
+.quotation {
+  font-family: 'Libre Baskerville', serif;
+  background: url("speech08.png");
+  /*background-position: left top;*/
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  min-height: 400px;
+  padding: 40px 60px;
+  /*border: 1px solid black;*/
+}
+
+.under-quote {
+  background-color: #dfdfdf;
+  background: url("speech09.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  height: 100px;
+  width: 100%;
+  padding: 40px 60px;
+}
+
 .edit p {
   font-size: 20px;
   line-height: 1.25em;
 }
 
-.edit .title p {
+.quotation p {
+  font-size: 20px;
+  line-height: 1.25em;
+}
+
+.title p {
   font-weight: bold;
 }
 
@@ -31,7 +100,7 @@
   margin-bottom: 0px;
 }
 
-.edit .quote {
+.quote {
   margin-left: 60px;
 
 }
@@ -84,6 +153,9 @@
   margin-bottom: 0px;
 }
 
+.link {
+  text-align: right;
+}
 
 
 /*@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:300,400);

@@ -9,10 +9,6 @@ class Section < ActiveRecord::Base
 
   validates :text, presence: true
 
-  def to_key
-    [id]
-  end
-
   def tags_to_s
     tagger = EngTagger.new
     @tag_string = tagger.tag_string(text)
@@ -52,6 +48,13 @@ class Section < ActiveRecord::Base
       word_array[i_num].update(replace?: true)
     end 
     return word_array 
+  end
+
+  def name_tags
+    if tags_to_s.match('nnp nnp ppc')[0]
+      words[0].update(pos_tag_id: 45, replace?: true)
+      words[1].update(pos_tag_id: 46, replace?: true)
+    end
   end
 end
 

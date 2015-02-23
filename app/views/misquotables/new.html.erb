@@ -1,7 +1,29 @@
+
+
+<div class="row"> 
+  <div class="quotation">
+
+<div class="col-sm-6">
 <%= form_for @misquotable do |f| %>
-<%= radio_button_tag(:query_type, 'topic') %>
-<%= f.collection_select(:topic_id, Topic.all, :id, :name) %>  
-<%= radio_button_tag(:query_type, 'search') %>
-<%= search_field_tag(:query, "Search all NPR Stories") %>
+<% @misquotable.topic_id = Topic.find_by_name('User Search').id %>
+<%= hidden_field(:misquotable, :topic_id) %>
+<%= hidden_field_tag(:query_type, 'search') %>
+
+<%= search_field_tag(:query, "Search all of NPR", class: "form-control") %>
+
 <%= f.submit 'Submit' %>
 <% end %>
+</div>
+
+<div class="col-sm-6">
+<%= form_for @misquotable do |f| %>
+<%= hidden_field_tag(:query_type, 'topic') %>
+
+<%= f.collection_select(:topic_id, Topic.all, :id, :name, { }, {class: "form-control"}) %>  
+
+<%= f.submit 'Submit' %>
+<% end %>
+</div>
+
+  </div>
+</div>

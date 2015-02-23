@@ -2,28 +2,13 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  resources :users,     except: [:new]
-  resources :sessions,  only:   [:create]
-
-  resources :misquotables do
-    resources :words do
-      collection do
-        get 'replacements'
-        put 'replace'
-      end
-    end
-    resources :sections do
-      collection do
-        get 'replacements'
-        put 'replace'
-      end
-    end
-  end
-
+  resources :users,        except: [:new]
+  resources :sessions,     only:   [:create]
+  resources :misquotables, except: [:index] 
+  
   get '/signup',    to: 'users#new'
   get '/signin',    to: 'sessions#new'
   delete '/signout',   to: 'sessions#destroy'
-  put 'misquotables/:id/alteration' => 'misquotables#alteration'
   
 # resources :sections, only: [:edit, :update]
 # map.resources :products, :collection => { :edit_individual => :post, :update_individual => :put }
