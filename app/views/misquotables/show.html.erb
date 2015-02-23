@@ -4,6 +4,8 @@
       <div class="<%= section.name %>">
         <% if section.name == 'quote' %>
           <p>" <%= section.altered_text %>"</p>
+        <% elsif section.name == 'title' %>
+          <p><%= section.altered_text.titleize %></p>
         <% else %>
           <p><%= section.altered_text %></p>
         <% end %>
@@ -13,5 +15,4 @@
     <a href=<%= @misquotable.link %> target="blank">View the original story at NPR</a>
   </div>
   </div>
-
 </div>

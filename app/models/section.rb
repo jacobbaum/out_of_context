@@ -27,7 +27,8 @@ class Section < ActiveRecord::Base
                     'in det nn'  => 'in det mlnn' ,
                     'rb jj'      => 'mlrb jj'     , 
                     'ppc rb ppc' => 'ppc mlrb ppc',
-                    'nn in nn'   => 'mlnn in mlnn'  }
+                    'nn in nn'   => 'mlnn in mlnn', 
+                    'rb vbn'     => 'rb mlrbn'    }
     when 'attribution'
       patterns =  { 'prp vbd'  => 'prp mlvbd' }
     end       

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Cutive+Mono|Libre+Baskerville|EB+Garamond|Roboto);
+@import url(https://fonts.googleapis.com/css?family=Cutive+Mono|Libre+Baskerville|EB+Garamond|Roboto);
 /*font-family: 'EB Garamond', serif;*/
 /*font-family: 'Libre Baskerville', serif;
 font-family: 'Cutive Mono', monospace;*/
@@ -9,9 +9,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-/*.container {
-  padding: 0px;
-}*/
+.container {
+  max-width: 860px;
+  margin-top: 40px;
+}
+
 .jumbotron {
   margin-bottom: 0px;
   padding: 10px 60px;
