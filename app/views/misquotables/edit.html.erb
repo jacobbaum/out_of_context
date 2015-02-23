@@ -1,6 +1,6 @@
 <h3><%= @misquotable.id %></h3>
 
-<%= form_tag('/misquotables/:id/alteration', method: :put, class: "edit") do %>
+<%= form_tag(misquotable_path, method: 'patch', class: "edit") do %>
   <% @misquotable.sections.each do |section| %>
     <div class="<%= section.name %>">
       <p>
@@ -11,6 +11,7 @@
             <%= label_tag word.id, word.pos_tag.description.downcase %> 
           </span>                  
           <% else %>
+            <%= word.text %>
             <% hide = "wdiatl".chars %>
             <% many = word.text.length %>
             <% what = "" %>

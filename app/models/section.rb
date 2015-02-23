@@ -30,7 +30,8 @@ class Section < ActiveRecord::Base
                     'jj jj nn'   => 'jj jj mlnn'  ,
                     'in det nn'  => 'in det mlnn' ,
                     'rb jj'      => 'mlrb jj'     , 
-                    'ppc rb ppc' => 'ppc mlrb ppc' }
+                    'ppc rb ppc' => 'ppc mlrb ppc',
+                    'nn in nn'   => 'mlnn in mlnn'  }
     when 'attribution'
       patterns =  { 'prp vbd'  => 'prp mlvbd' }
     end       
@@ -42,7 +43,6 @@ class Section < ActiveRecord::Base
     return self
   end
 
-
   def flag_subs
     word_indexes = tag_array.each_index.select do |i| 
       tag_array[i].include?('ml') 
@@ -53,41 +53,5 @@ class Section < ActiveRecord::Base
     end 
     return word_array 
   end
-
-  # def t_find_subs
-  #   patterns =  { 'vb'  => 'mlvb' }
-  #   tags_to_s
-  #   patterns.each do |pattern, replacement|
-  #     tag_string.gsub!(pattern, replacement)
-  #   end
-  #   @tag_array = tag_string.split(' ')
-  #   return self
-  # end
-
-  # def q_find_subs
-  #   patterns =  { 'vb cc vb'  => 'mlvb cc mlvb',
-  #                 'nn nn'     => 'mlnn nn'     ,
-  #                 'prps nn'   => 'prps mlnn'   ,
-  #                 'jjs nn'    => 'jjs mlnn'    ,
-  #                 'jj jj nn'  => 'jj jj mlnn'  ,
-  #                 'in det nn' => 'in det mlnn' ,
-  #                 'rb jj'     => 'mlrb jj'      }
-  #   tags_to_s
-  #   patterns.each do |pattern, replacement|
-  #     tag_string.gsub!(pattern, replacement)
-  #   end
-  #   @tag_array = tag_string.split(' ')
-  #   return self
-  # end
-
-  # def a_find_subs
-  #   patterns =  { 'prp vbd'  => 'prp mlvbd' }
-  #   tags_to_s
-  #   patterns.each do |pattern, replacement|
-  #     tag_string.gsub!(pattern, replacement)
-  #   end
-  #   @tag_array = tag_string.split(' ')
-  #   return self
-  # end
 end
 

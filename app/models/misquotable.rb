@@ -3,10 +3,8 @@ class Misquotable < ActiveRecord::Base
 
   has_many :sections
   has_many :words, through: :sections
-
-  accepts_nested_attributes_for :sections
-  # accepts_nested_attributes_for :words
- 
+  
+  belongs_to :user
   belongs_to :topic
   #TODO if _json.count> 1, create from extras, prompt user
 
