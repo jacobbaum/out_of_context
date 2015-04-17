@@ -1,18 +1,33 @@
 <div class="row"> 
-  <div class="quotation">
-    <% @misquotable.sections.each do |section| %>
-      <div class="<%= section.name %>">
-        <% if section.name == 'quote' %>
-          <p>" <%= section.altered_text %>"</p>
-        <% elsif section.name == 'title' %>
-          <p><%= section.altered_text.titleize %></p>
-        <% else %>
-          <p><%= section.altered_text %></p>
+  <div class="col-sm-1"></div>
+    <div class="col-md-10">
+      <div class="quotation">
+
+        <% @misquotable.sections.each do |section| %>
+          <div class="<%= section.name %>">
+            <% if section.name == 'quote' %>
+              <p>" <%= section.altered_text %>"</p>
+            <% elsif section.name == 'title' %>
+              <p><%= section.altered_text.titleize %></p>
+            <% else %>
+              <p><%= section.altered_text %></p>
+            <% end %>
+          </div>
         <% end %>
-      </div>
-    <% end %>
-  <div class="link">
-    <a href=<%= @misquotable.link %> target="blank">View the original story at NPR</a>
-  </div>
+
+        <div class="link">
+          <a href=<%= @misquotable.link %> target="blank">View the original story at NPR</a>
+        </div>
+
+      </div> 
+    </div>
+  <div class="col-sm-1"></div>
+</div>
+
+<div class="row"> 
+  <div class="col-sm-1"></div>
+    <div class="col-md-10">
+      <div class="under-quote"></div> 
+    </div>
   </div>
 </div>

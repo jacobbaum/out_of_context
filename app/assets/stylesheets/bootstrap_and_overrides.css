@@ -43,15 +43,18 @@ body {
 
 .quotation {
   font-family: 'Libre Baskerville', serif;
-  background: url("speech08.png");
+  background-color: rgba(0,0,0,.1);
   /*background-position: left top;*/
   background-size: 100% 100%;
+  border-radius: 8px;
   background-repeat: no-repeat;
   background-origin: padding-box;
   min-height: 400px;
   padding: 40px 60px;
   /*border: 1px solid black;*/
 }
+
+/*background: url("speech08.png");*/
 
 .under-quote {
   background-color: #dfdfdf;
