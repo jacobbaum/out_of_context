@@ -4,6 +4,17 @@
 font-family: 'Cutive Mono', monospace;*/
 /*font-family: 'Roboto', sans-serif;*/
 
+.red {
+  color: rgba(238,58,35,1);
+}
+
+.blue {
+  color: rgba(64,103,178,1);
+}
+
+.black {
+  color: rgba(0,0,0,1);
+}
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -11,13 +22,13 @@ body {
 
 .container {
   max-width: 860px;
-  margin-top: 40px;
+  margin-top: 16px;
 }
 
-.jumbotron {
+/*.jumbotron {
   margin-bottom: 0px;
   padding: 10px 60px;
-}
+}*/
 
 .navbar {
   margin-bottom: 0px
@@ -27,13 +38,15 @@ body {
   display: inline-block;
   height: 50px;
   margin: 0px;
-  padding-top: 3px;
+  padding-top: 6px;
   line-height: normal;
 }
 
 .navbar-default {
   background: white;
-  border: none;
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 4px;
+  box-shadow: -1px 2px 4px rgba(0,0,0,.5);
 }
 
 .navbar-nav li a {
@@ -41,46 +54,149 @@ body {
   padding-top: 15px;
 }
 
+/*.behind {
+  font-size: 55em;
+  line-height: 1em;
+  z-index: -1;
+  position: absolute;
+  top: -.25em;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: rgba(255,255,5,.5);  
+}*/
+
+.red-mic {
+  font-size: 60em;
+  line-height: 1em;
+  z-index: -1;
+  position: absolute;
+  top: -30%;
+  left: 10%;
+  transform: translate(-50%,0);
+  transform: rotate(-110deg);
+  color: rgba(238,58,35,1);
+}
+
+.blue-mic {
+  font-size: 60em;
+  line-height: 1em;
+  z-index: -2;
+  position: absolute;
+  top: -45%;
+  left: 75%;
+  transform: translate(-50%,0);
+  color: rgba(64,103,178,1);
+}
+
+.black-mic {
+  font-size: 70em;
+  line-height: 1em;
+  z-index: -1;
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: rgba(0,0,0,1);
+}
+
+/*.black-speech {
+  font-size: 70em;
+  line-height: 1em;
+  z-index: -1;
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: rgba(0,0,0,1);
+}
+
+.speech {
+  font-size: 70em;
+  line-height: 1em;
+  z-index: -2;
+  position: absolute;
+  top: -.3em;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: rgba(64,103,178,1);
+}*/
+
+
+
 .quotation {
-  font-family: 'Libre Baskerville', serif;
-  background-color: rgba(0,0,0,.1);
-  /*background-position: left top;*/
-  background-size: 100% 100%;
-  border-radius: 8px;
-  background-repeat: no-repeat;
-  background-origin: padding-box;
+  font-family: 'Roboto', sans-serif;
+  background-color: rgba(255,255,255,1);
+  border: 1px solid rgba(0,0,0,.05);
+  border-radius: 4px;
   min-height: 400px;
-  padding: 40px 60px;
-  /*border: 1px solid black;*/
+  padding: 16px 60px;
+  margin-top: 16px;
+  box-shadow: -1px 2px 4px rgba(0,0,0,.5);
 }
 
-/*background: url("speech08.png");*/
-
-.under-quote {
-  background-color: #dfdfdf;
-  background: url("speech09.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-origin: padding-box;
-  height: 100px;
-  width: 100%;
-  padding: 40px 60px;
-}
-
-.edit p {
-  font-size: 20px;
+/*.edit p {
+  font-size: 16px;
   line-height: 1.25em;
+}*/
+
+
+.replaced {
+  color: rgba(238,58,35,.75);
 }
 
 .quotation p {
-  font-size: 20px;
+  font-size: 1.25em;
+  /*line-height: 1.25em;*/
+}
+
+.quotation .edit p {
+  font-size: 1.25em;
+  line-height: 2em;
+  text-transform: capitalize;
+}
+
+.quotation .edit p .scrambled {
+  color: rgba(64,103,178,.5);
+/*  line-height: 1.75em;*/
+}
+
+.question {
+  font-size: 1.25em;
+  color: rgba(0,0,0,.5);
+}
+
+.title h2 {
+  font-size: 1.75em;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.mq-search {
+  margin-bottom: 12px;
+}
+
+.mq-edit {
+  display: inline-block;
+  width: 10em;
+  height: 2em;
   line-height: 1.25em;
+  vertical-align: text-bottom;
+  padding: 4px 12px 4px;
 }
 
-.title p {
-  font-weight: bold;
+.mq-submit {
+  margin: 20px 0px;
+  background-color: rgba(64,103,178,1);
+  color: rgba(255,255,255,1);
+  border: none;
+  font-size: 1.25em;
+  line-height: 2em;
 }
 
+.sign-up {
+  margin-bottom: 20px;
+}
+/*
 .edit .title .word {
   display: inline-table;
 }
@@ -157,9 +273,16 @@ body {
   font-size: .75em;
   margin-bottom: 0px;
 }
+*/
 
 .link {
   text-align: right;
+  margin: 12px 8px 12px 0px;
+}
+
+.another {
+  text-align: right;
+  margin: 12px 8px 12px 0px;
 }
 
 

@@ -1,15 +1,14 @@
 <% provide(:title, @user.name) %>
 
-<h1><%= @user.name %></h1>
-
-<h5>Your Misquotes</h5>
+<h1><%= @user.name %>'s Misquotes</h1>
 <ul>
-  <% @user.misquotables.each do |misquotable| %>
+  <% @user.misquotes.each do |misquote| %>
     <li>
-      <%= link_to misquotable.sections.find_by_name('title').text, misquotable_path(misquotable) %>
+      <%= link_to misquote.sections.find_by_name('question').text, misquote_path(misquote) %>
       <% if current_user?(@user) %>
-         | <%= link_to "try it again", edit_misquotable_path(misquotable) %>
+         | <%= link_to "Try it again", edit_misquote_path(misquote) %>
       <% end %>
      </li>
   <% end %>
 </ul>
+<h4><%= link_to "Misquote a New Interview", new_misquote_path %></h4>

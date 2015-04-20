@@ -3,6 +3,12 @@
 <div class="row"> 
   <div class="quotation">
 
+  <%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <div class="col-sm-6">
 <%= form_for @misquotable do |f| %>
 <% @misquotable.topic_id = Topic.find_by_name('User Search').id %>

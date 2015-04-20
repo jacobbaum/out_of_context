@@ -23,11 +23,16 @@
         </button>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-      <h2>Out of Context</h2>
+
+      <h2>
+        <%=link_to sanitize('<span class="red">Out</span> 
+                            <span class="black">of </span>
+                            <span class="blue">Context</span>'), new_misquote_path %>
+      </h2>
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Get a Quote", new_misquotable_path %></li>
+          <li><%= link_to "About", about_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "My Profile", user_path(current_user) %></li>
+            <li><%= link_to "My Misquotes", user_path(current_user) %></li>
             <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
             <li><%= link_to "Sign Out", signout_path, method: 'delete' %></li>
           <% else %>

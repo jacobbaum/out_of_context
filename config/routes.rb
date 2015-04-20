@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#home'
+  root 'misquotes#new'
 
   resources :users,        except: [:new]
   resources :sessions,     only:   [:create]
   resources :misquotables, except: [:index] 
-  
+  resources :misquotes 
+
+  get 'home',       to: 'static_pages#home'
+  get '/about',     to: 'static_pages#about'
   get '/signup',    to: 'users#new'
   get '/signin',    to: 'sessions#new'
   delete '/signout',   to: 'sessions#destroy'

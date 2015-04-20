@@ -35,5 +35,6 @@ module NprApi
   def self.quotes?
     @quotes.any?
   end
+
 end
 

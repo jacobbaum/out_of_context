@@ -1,0 +1,41 @@
+<!-- <div class="row"> 
+  <div class="quotation"> -->
+
+<%= form_tag(misquote_path, method: 'patch', class: "form-group") do %>
+
+  <div class="title">
+    <h2><%= @misquote.title %></h2>
+  </div>
+
+  <div class="edit">
+
+  <% @sections.each do |section| %>
+    <div class="<%= section.name %>">
+      <p>
+      <% words = @words.order(:id).select { |word| word.section == section } %>
+      <% words.each do | word | %>
+        <% if word.replace? %>
+          <span class="word">
+            <%= text_field_tag word.id, word.replacement, placeholder: word.pos_tag.description.downcase, class: "mq-edit form-control" %>
+          </span>                  
+        <% else %>
+          <span class="scrambled">
+            <% hide = "wdiatl".chars %>
+            <% many = word.text.length %>
+            <% what = "" %>
+            <% many.times { |i| what << hide.sample } %>
+            <%= what %>
+            </span> 
+        <% end %> 
+        
+      <% end %> 
+      </p>
+    </div> 
+  <% end %>
+  <%= submit_tag 'Submit', class: "mq-submit btn btn-default" %>
+</div>
+<% end %>
+
+  
+<!--   </div>
+</div> -->

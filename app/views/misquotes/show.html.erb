@@ -1,0 +1,48 @@
+<!-- <div class="row"> 
+  <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+
+      <div class="red-mic">
+        <i class="fa fa-microphone"></i>
+      </div>
+
+      <div class="blue-mic">
+        <i class="fa fa-microphone"></i>
+      </div>
+
+      <div class="quotation"> -->
+<% provide(:title, @misquote.title) %>
+
+        <div class="title">
+          <h2><%= @misquote.title %></h2>
+        </div>
+
+        <% @misquote.sections.each do |section| %>
+          <% altered_text = "" %>
+          <div class="<%= section.name %>">
+          <% section.words.order(:id).each do |word| %>
+            <% if word.replace? %>
+              <% altered_text << '<span class="replaced">' + word.replacement + ' ' + '</span>' %>
+            <% else %>
+              <% altered_text << word.text + ' '%>
+            <% end %>
+          <% end %>
+          <% altered_text.gsub!(/\s[!?,.']/, ' !' => '!', ' ?' => '?',
+                                             ' ,' => ',', ' .' => '.', 
+                                             " '" => "'") %>
+          <p><%= sanitize(altered_text) %></p>
+          </div>
+        <% end %>
+
+        <div class="link">
+          <a href=<%= @misquote.link %> target="blank">View the original story at NPR</a>
+        </div>
+        <div class="another">
+          <%= link_to "Get another misquote", new_misquote_path %>
+          <span>  -  or  -  </span>
+          <%= link_to "Try this one again", edit_misquote_path(@misquote.id) %>
+        </div>
+      <!-- </div> 
+    </div>
+  <div class="col-sm-1"></div>
+</div> -->

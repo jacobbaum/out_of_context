@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
   <div class="container">
@@ -14,7 +15,26 @@
       <%= content_tag(:div, value, class: "alert alert-#{key} no-margin") %>
     <% end %>
 
-    <%= yield %>
+    <div class="row"> 
+      <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+          
+          <div class="red-mic">
+            <i class="fa fa-microphone"></i>
+          </div>
+
+          <div class="blue-mic">
+            <i class="fa fa-microphone"></i>
+          </div>
+
+          <div class="quotation">
+
+            <%= yield %>
+
+          </div> 
+        </div>
+      <div class="col-sm-1"></div>
+    </div>
 
   </div>
 </body>

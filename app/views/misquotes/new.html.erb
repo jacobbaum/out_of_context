@@ -1,0 +1,18 @@
+
+<!-- 
+<div class="row"> 
+  <div class="quotation"> -->
+
+    <div class="title">
+      <h2>Search NPR Interviews</h2>
+    </div>
+
+    <%= form_tag({controller: "misquotes", action: "create"}, method: "post", class: "form-group") do %>
+
+      <%= text_field_tag('query', nil, class: "mq-search form-control")%>
+
+    <%= submit_tag("Search", class: "mq-search btn btn-default")%>
+    <% end %>
+
+<!--   </div>
+</div> -->

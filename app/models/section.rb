@@ -15,23 +15,21 @@ class Section < ActiveRecord::Base
   end
 
   def find_subs
-    case name
-    when 'title'
-      patterns =  { 'vb'  => 'mlvb' }
-    when 'quote'
-      patterns =  { 'vb cc vb'   => 'mlvb cc mlvb',
-                    'nn nn'      => 'mlnn nn'     ,
-                    'prps nn'    => 'prps mlnn'   ,
-                    'jjs nn'     => 'jjs mlnn'    ,
-                    'jj jj nn'   => 'jj jj mlnn'  ,
-                    'in det nn'  => 'in det mlnn' ,
-                    'rb jj'      => 'mlrb jj'     , 
-                    'ppc rb ppc' => 'ppc mlrb ppc',
-                    'nn in nn'   => 'mlnn in mlnn', 
-                    'rb vbn'     => 'rb mlrbn'    }
-    when 'attribution'
-      patterns =  { 'prp vbd'  => 'prp mlvbd' }
-    end       
+    patterns =  { 'uh'         => 'mluh',
+                  'jjs'        => 'mljjs',
+                  'rbs'        => 'mlrbs',
+                  'in vbg'     => 'in mlvbg',
+                  'vb cc vb'   => 'mlvb cc mlvb',
+                  'nn nn'      => 'mlnn nn',
+                  'nns nn'     => 'mlnns nn',
+                  'prps nn'    => 'prps mlnn',
+                  'jjs nn'     => 'jjs mlnn',
+                  'jj jj nn'   => 'jj jj mlnn',
+                  'in det nn'  => 'in det mlnn',
+                  'rb jj'      => 'mlrb jj', 
+                  'ppc rb ppc' => 'ppc mlrb ppc',
+                  'nn in nn'   => 'mlnn in mlnn', 
+                  'rb vbn'     => 'rb mlrbn' }
     tags_to_s
     patterns.each do |pattern, replacement|
       tag_string.gsub!(pattern, replacement)
@@ -51,11 +49,5 @@ class Section < ActiveRecord::Base
     return word_array 
   end
 
-  def name_tags
-    if tags_to_s.match('nnp nnp ppc')[0]
-      words[0].update(pos_tag_id: 45, replace?: true)
-      words[1].update(pos_tag_id: 46, replace?: true)
-    end
-  end
 end
 

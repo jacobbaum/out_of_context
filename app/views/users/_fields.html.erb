@@ -1,22 +1,22 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, class: "form-group") do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <%= f.label :name %>
-  <%= f.text_field :name, autofocus: true %>
+  <%= f.text_field :name, autofocus: true, class: "form-control" %>
 
   <br>
   <%= f.label :email %>
-  <%= f.text_field :email %>
+  <%= f.text_field :email, class: "form-control" %>
 
   <br>
   <%= f.label :password %>
-  <%= f.password_field :password %>
+  <%= f.password_field :password, class: "form-control"  %>
 
   <br>
   <%= f.label :password_confirmation, "Confirm password" %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: "form-control"  %>
 
   <br>
-  <%= f.submit 'Save' %>
+  <%= f.submit 'Save', class: "sign-up btn btn-default" %>
 <% end %>
 
