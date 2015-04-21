@@ -1,31 +1,17 @@
 Rails.application.routes.draw do
 
-  root 'misquotes#new'
+  root 'static_pages#home'
 
-  resources :users,        except: [:new]
+  resources :users,        except: [:new, :index]
   resources :sessions,     only:   [:create]
-  resources :misquotables, except: [:index] 
-  resources :misquotes 
+  resources :misquotes, except: [:index] 
 
-  get 'home',       to: 'static_pages#home'
-  get '/about',     to: 'static_pages#about'
-  get '/signup',    to: 'users#new'
-  get '/signin',    to: 'sessions#new'
+  get '/',             to: 'static_pages#home'
+  get '/about',        to: 'static_pages#about'
+  get '/signup',       to: 'users#new'
+  get '/signin',       to: 'sessions#new'
   delete '/signout',   to: 'sessions#destroy'
   
-# resources :sections, only: [:edit, :update]
-# map.resources :products, :collection => { :edit_individual => :post, :update_individual => :put }
-
-
-#   resources :words, :collection => { :edit, :update }
-
-
-# resources :photos do
-#   collection do
-#     get 'search'
-#   end
-# end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

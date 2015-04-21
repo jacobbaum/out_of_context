@@ -1,0 +1,14 @@
+  <div class="intro">
+    <h2>Like MadLibs. With NPR Interviews.</h2>
+
+    <p>Try it out below. Sign-up or sign-in above to save your misquotes.</p> 
+
+    <%= form_tag({controller: "misquotes", action: "create"}, method: "post", class: "form-group") do %>
+
+      <%= text_field_tag('query', 'Find an Interview to Misquote', class: "mq-search form-control")%>
+
+      <%= submit_tag("Search", class: "mq-search btn btn-default")%>
+
+    <% end %>
+
+  </div>

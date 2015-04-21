@@ -6,6 +6,9 @@ class Misquote < ActiveRecord::Base
  
   def self.get_npr(search_term)
 
+    search_term.strip!
+    search_term.gsub!(' ', '%20')
+
     url = "https://api.npr.org/query?id=1022&fields=title,text&requiredAssets=text&"
     url << "searchTerm=#{search_term}%20%22interview%20highlights%22&date"
     url << "Type=story&output=JSON&apiKey=MDE4MjMzNDczMDE0MjM2MDYxOTBiMDU5MQ001"
@@ -29,10 +32,10 @@ class Misquote < ActiveRecord::Base
 
         paras.each_index do |i|
           if paras[i] && paras[i+1]
-            if paras[i]['$text'].start_with?('On') && paras[i+1]['$text'].length > 300
+            if paras[i]['$text'].start_with?('On') && paras[i+1]['$text'].length.between?(49, 500)
               match = Misquote.new(npr_id: story['id'], 
                                    title: story['title']['$text'], 
-                                   link: story['link'][2]['$text'],
+                                   link: story['link'][0]['$text'],
                                    search_term: search_term) 
               match.sections.new(name: 'question', text: paras[i]['$text']) 
               match.sections.new(name: 'answer', text: paras[i+1]['$text'])                      
@@ -61,7 +64,7 @@ class Misquote < ActiveRecord::Base
 
   def make_substitutions
     sections.each do |section|
-      section.find_subs.flag_subs
+      section.find_subs.flag_subs.ing_replace
     end
     return
   end
@@ -95,8 +98,4 @@ class Misquote < ActiveRecord::Base
     return self
   end
 
-
-
 end
-
-

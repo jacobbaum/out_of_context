@@ -11,19 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419174122) do
+ActiveRecord::Schema.define(version: 20150421031337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "misquotables", force: :cascade do |t|
-    t.integer  "npr_id"
-    t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "topic_id"
-    t.integer  "user_id"
-  end
 
   create_table "misquotes", force: :cascade do |t|
     t.integer  "npr_id"
@@ -51,13 +42,6 @@ ActiveRecord::Schema.define(version: 20150419174122) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "misquote_id"
-  end
-
-  create_table "topics", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

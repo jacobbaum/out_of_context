@@ -1,15 +1,7 @@
 class MisquotesController < ApplicationController
-  # before_action :find_id, only: [:update]
   before_action :set_misquote,  only: [:show, :edit, :update, :destroy]
   before_action :show_alterations, only: [:show]
-  # before_action :user?, only: [:show, :edit, :update, :destroy]
-  # before_action :signed_in_user, except: [:index, :show]
-  # before_action :set_user, only: [:edit]
   before_action :correct_user,   except: [:new, :create, :index, :show]
-
-  def index
-    @misquotes = Misquote.all
-  end
 
   def show
     @misquote
@@ -43,6 +35,9 @@ class MisquotesController < ApplicationController
   end
 
   def destroy
+    @misquote.destroy
+    flash[:success] = "Misquote was deleted."
+    redirect_to user_path(current_user)
   end
 
   private
@@ -66,8 +61,10 @@ class MisquotesController < ApplicationController
   end
 
   def correct_user
-    unless any_user? && current_user?(@misquote.user)
-      redirect_to user_path(current_user)
+    if any_user? 
+      unless current_user?(@misquote.user)
+        redirect_to new_misquote_path
+      end
     end
   end
 

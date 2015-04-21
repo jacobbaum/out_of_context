@@ -2,7 +2,7 @@
 
 pos_tags = PosTag.create([
   { tag: "CC",   description: "Coordinating conjuction",                example: "'and', 'but', etc" },
-  { tag: "CD",   description: "Cardinal number",                        example: "'three', '82', etc" },
+  { tag: "CD",   description: "Number",                                 example: "'three', '82', etc" },
   { tag: "DET",  description: "Determiner",                             example: '' },
   { tag: "EX",   description: "Pronoun, existential there",             example: '' },
   { tag: "FW",   description: "Foreign words",                          example: '' },
@@ -31,7 +31,7 @@ pos_tags = PosTag.create([
   { tag: "VBD",  description: "Verb (past participle)",                 example: "'ran', 'spoke', etc" },
   { tag: "VBG",  description: "'ing' Verb (present participle)",        example: "'running', 'speaking', etc" },
   { tag: "VBN",  description: "Verb (past & passive)",                  example: "'spoken', 'taken', etc" },
-  { tag: "VBP",  description: "Verb (base present)",                    example: "'run', 'speak', etc" },
+  { tag: "VBP",  description: "Verb",                                   example: "'run', 'speak', etc" },
   { tag: "VBZ",  description: "Verb (present, third person)",           example: "'runs', 'speaks', etc" },
   { tag: "WDT",  description: "Determiner, question",                   example: '' },
   { tag: "WP",   description: "Pronoun, question",                      example: '' },

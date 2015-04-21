@@ -15,9 +15,7 @@ class Section < ActiveRecord::Base
   end
 
   def find_subs
-    patterns =  { 'uh'         => 'mluh',
-                  'jjs'        => 'mljjs',
-                  'rbs'        => 'mlrbs',
+    patterns =  { 
                   'in vbg'     => 'in mlvbg',
                   'vb cc vb'   => 'mlvb cc mlvb',
                   'nn nn'      => 'mlnn nn',
@@ -29,7 +27,12 @@ class Section < ActiveRecord::Base
                   'rb jj'      => 'mlrb jj', 
                   'ppc rb ppc' => 'ppc mlrb ppc',
                   'nn in nn'   => 'mlnn in mlnn', 
-                  'rb vbn'     => 'rb mlrbn' }
+                  'rb vbn'     => 'rb mlrbn', 
+                  'uh'         => 'mluh',
+                  'jjs'        => 'mljjs',
+                  'rbs'        => 'mlrbs',
+                  'cd'         => 'mlcd'
+                }
     tags_to_s
     patterns.each do |pattern, replacement|
       tag_string.gsub!(pattern, replacement)
@@ -46,8 +49,14 @@ class Section < ActiveRecord::Base
     word_indexes.each do |i_num|
       word_array[i_num].update(replace?: true)
     end 
-    return word_array 
+    return self 
   end
 
+  def ing_replace
+    if name == 'question' && words[1].text.end_with?('ing')
+      words[1].update(pos_tag: PosTag.find_by_tag('VBG'),
+                      replace?: true)
+    end
+  end
+  
 end
-

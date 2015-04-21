@@ -7,6 +7,7 @@
       <%= link_to misquote.sections.find_by_name('question').text, misquote_path(misquote) %>
       <% if current_user?(@user) %>
          | <%= link_to "Try it again", edit_misquote_path(misquote) %>
+         | <%= link_to "Delete", misquote_path(misquote),  method: :delete %>
       <% end %>
      </li>
   <% end %>

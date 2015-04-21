@@ -16,4 +16,5 @@ class User < ActiveRecord::Base
   def self.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
+  
 end
